@@ -1,0 +1,52 @@
+import numpy as np
+import matplotlib.image as mpimg
+import matplotlib.pyplot as plt
+
+# Read the image
+image_path = 'C:/Users/LENOVO/Desktop/lesssorNankaiUniver/programmingC++/cpp_Project/picha.jpg'
+img = mpimg.imread(image_path)
+original_img = img.copy()  # Save the original image
+
+# Convert the image to grayscale if it's not already
+if img.ndim == 3:
+    img_gray = np.dot(img[..., :3], [0.2989, 0.5870, 0.1140])  # Convert to grayscale
+else:
+    img_gray = img
+
+# Calculate the gradient (difference) along both axes
+gradient_x_simple = np.diff(img_gray, axis=1)  # Gradient along x-axis
+gradient_y_simple = np.diff(img_gray, axis=0)  # Gradient along y-axis
+
+# Pad gradients with zeros to match original image size
+gradient_x_simple = np.pad(gradient_x_simple, ((0, 0), (0, 1)), mode='constant')
+gradient_y_simple = np.pad(gradient_y_simple, ((0, 1), (0, 0)), mode='constant')
+
+# Combine gradients to get the magnitude of the gradient (simple method)
+gradient_magnitude_simple = np.sqrt(gradient_x_simple**2 + gradient_y_simple**2)
+
+# Calculate the energy map
+energy_map = gradient_magnitude_simple
+
+# Plot the results
+plt.figure(figsize=(15, 5))
+
+# Original image
+plt.subplot(1, 3, 1)
+plt.title("Original Image")
+plt.imshow(original_img)
+plt.axis('off')
+
+# Grayscale image
+plt.subplot(1, 3, 2)
+plt.title("Grayscale Image")
+plt.imshow(img_gray, cmap='gray')
+plt.axis('off')
+
+# Energy map
+plt.subplot(1, 3, 3)
+plt.title("Energy Map")
+plt.imshow(energy_map, cmap='viridis')
+plt.axis('off')
+
+plt.tight_layout()
+plt.show()
