@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.JournalistApp" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Siu" parent="Theme.AppCompat.Light.NoActionBar"/>
 </resources>
+
+    <!--    <style name="Theme.Siu" parent="android:Theme.Material.Light.NoActionBar" />-->
