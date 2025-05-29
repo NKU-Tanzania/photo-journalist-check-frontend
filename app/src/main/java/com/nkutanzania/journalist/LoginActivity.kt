@@ -1,19 +1,14 @@
 package com.nkutanzania.journalist
 
-import android.app.Activity
 import android.content.Intent
-import android.net.Uri
-import android.nfc.Tag
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.nkutanzania.journalist.R
 import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONObject
 import java.io.IOException
 

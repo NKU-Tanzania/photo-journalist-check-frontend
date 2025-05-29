@@ -1,3 +1,42 @@
 <resources>
-    <string name="app_name">Journalist App</string>
+    <string name="app_name">PJC</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="first_name">First name</string>
+    <string name="surname">Surname</string>
+    <string name="password">Password</string>
+    <string name="retype_password">Retype password</string>
+    <string name="phone">Phone number</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="idNumber">ID Number</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="photo">Photo</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="welcome">Photo Journalist Check</string>
+    <string name="register_title">Please fill the form below to register</string>
+    <string name="logo">Logo</string>
+    <string name="key_exchange_button">Retry Key Exchange</string>
+    <string name="logout">Logout</string>
+    <string name="camera">Camera</string>
+
+    <!-- New strings for camera functionality -->
+    <string name="take_photo">Take Photo</string>
+    <string name="captured_photo">Captured Photo</string>
+    <string name="retake">Retake</string>
+    <string name="uploading">Uploading...</string>
+    <string name="camera_permission_required">Camera permission is required</string>
+    <string name="authentication_required">Authentication is required</string>
+    <string name="upload_success">Upload successful</string>
+    <string name="upload_failed">Upload failed</string>
+    <string name="no_image">No image to upload</string>
+    <string name="please_login">Please log in first</string>
+    <string name="logout_success">Logout successful!</string>
+    <string name="authentication_error">Authentication error</string>
+    <string name="camera_error">Failed to set up camera</string>
+    <string name="camera_instruction">Tap the button below to take a photo</string>
+    <string name="gallery">Gallery</string>
+    <string name="back">Back</string>
 </resources>

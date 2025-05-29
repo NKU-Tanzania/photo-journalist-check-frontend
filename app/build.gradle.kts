@@ -49,6 +49,24 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    implementation("androidx.appcompat:appcompat:1.6.1") // Add this for AppCompatActivity
+    implementation("androidx.core:core-ktx:1.12.0") // Ensure core-ktx is included
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4") // Optional, for better layouts
+
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")  // Make sure OkHttp is included
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    implementation(libs.firebase.crashlytics.buildtools) // Add Logging Interceptor
+
+    implementation("androidx.biometric:biometric:1.1.0")  // Use the latest version
+
+
+    implementation("com.google.android.material:material:1.10.0")
+    implementation(libs.androidx.swiperefreshlayout)
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

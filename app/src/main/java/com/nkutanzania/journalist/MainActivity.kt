@@ -1,47 +1,70 @@
 package com.nkutanzania.journalist
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.nkutanzania.journalist.ui.theme.JournalistAppTheme
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.nkutanzania.journalist.R
 
-class MainActivity : ComponentActivity() {
+private const val TAG = "MainActivity"
+
+class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            JournalistAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+        setContentView(R.layout.activity_main)
+
+        // Check if user is already logged in
+        checkLoginStatus()
+    }
+
+    private fun checkLoginStatus() {
+        // Get shared preferences to check if user is logged in
+        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+
+        // Using a handler to delay the navigation slightly (like a splash screen)
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (isLoggedIn) {
+                // User is logged in, go to home activity
+                navigateToCamera()
+            } else {
+                // User is not logged in, go to login activity
+                navigateToLogin()
             }
+        }, 1500) // 1.5 second delay
+    }
+
+    private fun navigateToCamera() {
+        try {
+            val cameraIntent = Intent(this, CameraActivity::class.java)
+            startActivity(cameraIntent)
+            finish() // Close this activity
+        } catch (e: Exception) {
+            Log.e(TAG, "Error navigating to home: ${e.message}")
+            // Fallback to login if home activity doesn't exist yet
+            navigateToLogin()
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    private fun navigateToLogin() {
+        try {
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+            finish() // Close this activity
+        } catch (e: Exception) {
+            Log.e(TAG, "Error navigating to login: ${e.message}")
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    JournalistAppTheme {
-        Greeting("Android")
+            // Fallback to register if login activity doesn't exist yet
+            try {
+                val registerIntent = Intent(this, RegisterActivity::class.java)
+                startActivity(registerIntent)
+                finish() // Close this activity
+            } catch (e: Exception) {
+                Log.e(TAG, "Error navigating to register: ${e.message}")
+            }
+        }
     }
 }
