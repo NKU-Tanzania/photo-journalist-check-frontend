@@ -18,7 +18,7 @@ private const val TAG = "ApiUtils"
 
 object ApiUtils {
     // Server endpoints
-    const val BASE_URL = "http://172.20.10.2:8000" // we will change to HTTPS
+    const val BASE_URL = "http://172.20.10.2:8000" // we will change to HTTPS in live implementation
     const val REGISTER_ENDPOINT = "$BASE_URL/auth/register/"
     const val LOGIN_ENDPOINT = "$BASE_URL/auth/login/"
     const val UPLOAD_ENDPOINT = "$BASE_URL/auth/upload/"
@@ -46,7 +46,6 @@ object ApiUtils {
             Log.e(TAG, "Server public key not found")
             return null
         }
-
         val serverPublicKey = getServerPublicKey(serverPublicKeyBase64) ?: return null
 
         try {
@@ -54,13 +53,11 @@ object ApiUtils {
             val keyGenerator = KeyGenerator.getInstance("AES")
             keyGenerator.init(256)
             val aesKey = keyGenerator.generateKey()
-
             // Encrypt image with AES
             val cipherAES = Cipher.getInstance("AES/GCM/NoPadding")
             cipherAES.init(Cipher.ENCRYPT_MODE, aesKey)
             val iv = cipherAES.iv // Initialization vector for decryption
             val encryptedData = cipherAES.doFinal(data)
-
             // Encrypt AES key with RSA
             val cipherRSA = Cipher.getInstance("RSA/ECB/PKCS1Padding")
             cipherRSA.init(Cipher.ENCRYPT_MODE, serverPublicKey)
