@@ -42,6 +42,7 @@ class CameraActivity : BaseActivity(), LocationListener {
     private lateinit var executor: Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
+    private lateinit var captionTextView: TextView
 
     private lateinit var logoutButton: Button
     private lateinit var uploadButton: ImageButton
@@ -117,6 +118,7 @@ class CameraActivity : BaseActivity(), LocationListener {
 
         setContentView(R.layout.activity_camera)
 
+        captionTextView = findViewById(R.id.caption)
         // Initialize UI components
         imagePreview = findViewById(R.id.appLogo)
         uploadButton = findViewById(R.id.uploadButton)
@@ -150,6 +152,7 @@ class CameraActivity : BaseActivity(), LocationListener {
 
         // Initialize camera executor
         cameraExecutor = Executors.newSingleThreadExecutor()
+        biometricPrompt.authenticate(promptInfo)
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
@@ -493,6 +496,7 @@ class CameraActivity : BaseActivity(), LocationListener {
         val hashBase64 = Base64.encodeToString(hash, Base64.NO_WRAP)
         val encryptedKeyBase64 = Base64.encodeToString(encryptedKey, Base64.NO_WRAP)
         val metadataString = metadata.toString()
+        val caption = captionTextView.text.toString()
 
         val requestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
@@ -501,6 +505,7 @@ class CameraActivity : BaseActivity(), LocationListener {
             .addFormDataPart("hash_value", hashBase64)
             .addFormDataPart("aes_key", encryptedKeyBase64) // Send AES key separately
             .addFormDataPart("metadata", metadataString) // Add the device metadata
+            .addFormDataPart("caption", caption) // Add the photo caption
             .build()
 
         val request = Request.Builder()

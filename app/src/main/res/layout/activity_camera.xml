@@ -65,6 +65,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/headerBar"
         android:orientation="vertical"
+        android:padding="16dp"
         android:visibility="gone">
 
         <ImageView
@@ -77,6 +78,26 @@
             android:layout_marginBottom="16dp"
             android:padding="8dp"
             android:scaleType="fitCenter" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/caption"
+            android:labelFor="@+id/caption"
+            android:textColor="#666666"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/caption"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_edit_text"
+            android:inputType="text"
+            android:padding="12dp"
+            android:labelFor="@+id/caption"
+            android:layout_marginBottom="16dp"
+            android:importantForAutofill="no" />
 
         <ProgressBar
             android:id="@+id/uploadProgressBar"
