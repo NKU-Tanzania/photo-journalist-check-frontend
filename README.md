@@ -37,7 +37,7 @@ A Kotlin-based frontend application for the DPVSCJ project.
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Msumali/siu_frontend.git
-   cd siu_frontend
+   cd photo-journalist-check-frontend
    ```
 
 2. **Build the project:**
