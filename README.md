@@ -1,5 +1,5 @@
 
-# siu_frontend repository
+# photo-journalist-check-frontend repository
 
 A Kotlin-based frontend application for the DPVSCJ project.
 
@@ -15,7 +15,7 @@ A Kotlin-based frontend application for the DPVSCJ project.
 
 ## Overview
 
-**siu_frontend** is the frontend component of the DPVSCJ project. Built entirely in Kotlin, this application aims to provide a robust and performant user interface, leveraging modern development practices.
+**photo-journalist-check-frontend** is the frontend component of the DPVSCJ project. Built entirely in Kotlin, this application aims to provide a robust and performant user interface, leveraging modern development practices.
 
 ## Features
 
